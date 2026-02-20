@@ -1,0 +1,19 @@
+---
+- name: Deploy Node.js Docker Container
+  hosts: web
+  become: yes
+
+  tasks:
+
+    - name: stop old container
+      docker_container:
+        name: node_app
+        state: absent
+
+    - name: Run new Container
+      docker_container:
+        name: node_app
+        image: simple-node-app
+        state: started
+        ports:
+          - "3000:3000"
