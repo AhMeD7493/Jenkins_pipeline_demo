@@ -6,12 +6,12 @@
   tasks:
 
     - name: stop old container
-      docker_container:
+      community.docker.docker_container:
         name: node_app
         state: absent
 
     - name: Run new Container
-      docker_container:
+      community.docker.docker_container:
         name: node_app
         image: simple-node-app
         state: started
