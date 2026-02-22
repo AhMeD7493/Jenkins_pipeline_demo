@@ -18,7 +18,7 @@
     - name: Run container
       community.docker.docker_container:
         name: node-app
-        image: ahmed7493/node-cicd-demo:latest
+        image: ahmed7493/node-cicd-demo:1.1
         state: started
         ports:
           - "3000:3000"
