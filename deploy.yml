@@ -1,19 +1,24 @@
 ---
-- name: Deploy Node.js Docker Container
+- name: Deploy Node App Container
   hosts: web
   become: yes
 
   tasks:
 
-    - name: stop old container
+    - name: Pull latest image
+      community.docker.docker_image:
+        name: ahmed7493/node-cicd-demo
+        source: pull
+
+    - name: Stop old container
       community.docker.docker_container:
-        name: node_app
+        name: node-app
         state: absent
 
-    - name: Run new Container
+    - name: Run container
       community.docker.docker_container:
-        name: node_app
-        image: simple-node-app
+        name: node-app
+        image: ahmed7493/node-cicd-demo:latest
         state: started
         ports:
           - "3000:3000"
